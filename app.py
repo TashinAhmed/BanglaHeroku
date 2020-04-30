@@ -13,14 +13,13 @@ def home():
 @app.route('/predict',methods=['POST'])
 def predict():
     '''For rendering results on HTML GUI'''
-	if request.method == 'POST':
-	    inputs = request.form.values()
-	    input_lists = webtool.convert(inputs)
-	    if input_lists != 0:
+    inputs = request.form.values() 
+    input_lists = webtool.convert(inputs)
+    	if input_lists != 0:
 		for i in input_lists:
 		    webtool.MakeError(i)
 		output = webtool.listToString(webtool.nlist)
-	    else:
+	else:
 		ouput = ""
     
     return render_template("index.html", prediction_text=output)
