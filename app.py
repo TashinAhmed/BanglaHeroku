@@ -13,7 +13,7 @@ def home():
 @app.route('/predict',methods=['post'])
 def predict():
     '''For rendering results on HTML GUI'''
-    inputs = request.form.values()
+    inputs = request.form['message']
     input_lists = webtool.convert(inputs)
     if input_lists != 0:
         for i in input_lists:
