@@ -20,7 +20,7 @@ def predict():
             webtool.MakeError(i)
         output = webtool.listToString(webtool.nlist)
     else:
-        ouput = ""
+        output = ""
     
     return render_template("index.html", prediction_text=output)
 if __name__ == "__main__":
