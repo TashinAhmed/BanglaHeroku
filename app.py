@@ -19,7 +19,6 @@ def predict():
 	    if input_lists != 0:
 		for i in input_lists:
 		    webtool.MakeError(i)
-		output = ""
 		output = webtool.listToString(webtool.nlist)
 	    else:
 		ouput = ""
