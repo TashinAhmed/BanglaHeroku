@@ -1,9 +1,10 @@
 body{
-    background-color: black;
+    background: url(static/1.jpg);
+    /* background-color: black; */
     background-size: cover;
     background-position: center;
     font-family: 'Franklin Gothic Medium';
-    color: white;
+/*     color: white; */
 }
 .form-control{
     margin-left: auto;

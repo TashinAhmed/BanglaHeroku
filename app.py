@@ -10,18 +10,25 @@ app.config['SESSION_COOKIE_SECURE'] = False
 def home():
 	return render_template("index.html")
 
-@app.route('/predict',methods=['post'])
+@app.route('/predict',methods=['POST'])
 def predict():
     '''For rendering results on HTML GUI'''
+
     inputs = request.form.values()
     input_lists = webtool.convert(inputs)
-    if input_lists == 0:
-	output = "enter something in Bangla"
-    else:    
-	for i in input_lists:
+    
+    sentence = ""
+    for chunks in input_lists:
+        sentence += chunks + ' '
+
+    if input_lists != 0:
+        for i in input_lists:
             webtool.MakeError(i)
+        output = ""
         output = webtool.listToString(webtool.nlist)
-     
-    return render_template("index.html", prediction_text=output)
+    else:
+        ouput = ""
+    
+    return render_template("index.html", prediction_text = "output " + output, input_text = "input " + sentence)
 if __name__ == "__main__":
     app.run(debug=True)
