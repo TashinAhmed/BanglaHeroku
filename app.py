@@ -20,14 +20,11 @@ def predict():
     sentence = ""
     for chunks in input_lists:
         sentence += chunks + ' '
-
+    ouput = []
     if input_lists != 0:
         for i in input_lists:
-            webtool.MakeError(i)
-        output = ""
-        output = webtool.listToString(webtool.nlist)
-    else:
-        ouput = ""
+		output.append(webtool.fun(i))
+            
     
     return render_template("index.html", prediction_text = "output " + output, input_text = "input " + sentence)
 if __name__ == "__main__":
