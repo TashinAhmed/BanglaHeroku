@@ -4,28 +4,26 @@ import pickle
 import webtool
 
 app = Flask(__name__)
-app.config['SESSION_COOKIE_SECURE'] = False
+app.config['SESSION_COOKIE_SECURE'] = True
 
 @app.route('/')
 def home():
 	return render_template("index.html")
 
-@app.route('/predict',methods=['POST'])
+@app.route('/predict',methods=['post'])
 def predict():
     '''For rendering results on HTML GUI'''
-
     inputs = request.form.values()
     input_lists = webtool.convert(inputs)
-    
-    sentence = ""
-    for chunks in input_lists:
-        sentence += chunks + ' '
-    ouput = []
-    if input_lists != 0:
+    output = []
+    if len(input_lists) != 0:
         for i in input_lists:
-		output.append(webtool.fun(i))
-            
+            output.append(webtool.fun(i))
+        # inputs = 0
+        input_lists.clear()
+    else:
+        return render_template("index.html",prediction_text = len(input_lists))
     
-    return render_template("index.html", prediction_text = "output " + output, input_text = "input " + sentence)
+    return render_template("index.html", prediction_text = output)
 if __name__ == "__main__":
     app.run(debug=True)
