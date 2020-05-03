@@ -332,3 +332,6 @@ def fun(w):
       return str1  
   MakeError(w)
   return listToString(nlist)
+
+def convert(lst): 	
+    return ([i for item in lst for i in item.split()]) 
